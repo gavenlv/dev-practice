@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-config
+  namespace: myapp
+data:
+  APP_ENV: "dev"
+  LOG_LEVEL: "debug"
+  DATABASE_HOST: "dev-db.myapp-dev.svc.cluster.local"
+  DATABASE_NAME: "myapp_dev"
+  REDIS_HOST: "dev-redis.myapp-dev.svc.cluster.local"

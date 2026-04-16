@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  namespace: myapp
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "myapp-prod-ip"
+    networking.gke.io/managed-certificates: "myapp-prod-cert"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+    - host: api.myapp.com
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: myapp
+                port:
+                  number: 80

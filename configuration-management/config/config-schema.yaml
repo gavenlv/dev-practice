@@ -1,0 +1,57 @@
+# Configuration Schema
+# Used for validation and documentation
+
+required:
+  - app.name
+  - app.port
+  - database.host
+  - database.name
+  - database.ssl_mode
+  - redis.host
+  - redis.ssl
+
+optional:
+  - app.log_level
+  - app.timeout
+  - database.user
+  - database.max_connections
+  - database.connection_timeout
+  - redis.password
+  - redis.db
+  - redis.pool_size
+  - pubsub.project_id
+  - gcp.project_id
+  - gcp.region
+
+sensitive:
+  - database.password
+  - redis.password
+  - api_keys.*
+
+patterns:
+  app.port: "^[0-9]+$"
+  database.ssl_mode: "^(disable|require|verify-ca|verify-full)$"
+  database.port: "^[0-9]+$"
+  redis.port: "^[0-9]+$"
+
+defaults:
+  app:
+    name: myapp
+    port: 8080
+    log_level: info
+    timeout: 30s
+  
+  database:
+    port: 5432
+    ssl_mode: require
+    max_connections: 10
+    connection_timeout: 30s
+    conn_max_lifetime: 1h
+  
+  redis:
+    port: 6379
+    ssl: true
+    pool_size: 10
+  
+  pubsub:
+    subscription_timeout: 30s

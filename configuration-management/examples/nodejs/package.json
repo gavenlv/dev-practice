@@ -1,0 +1,20 @@
+{
+  "name": "config-loader",
+  "version": "1.0.0",
+  "description": "Configuration loader for multi-environment configuration management",
+  "main": "config/loader.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "@google-cloud/secret-manager": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

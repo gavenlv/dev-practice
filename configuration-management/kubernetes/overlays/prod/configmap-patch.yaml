@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-config
+  namespace: myapp
+data:
+  APP_ENV: "prod"
+  LOG_LEVEL: "warn"
+  DATABASE_HOST: "prod-db.myapp-prod.svc.cluster.local"
+  DATABASE_NAME: "myapp_prod"
+  DATABASE_MAX_CONNECTIONS: "50"
+  REDIS_HOST: "prod-redis.myapp-prod.svc.cluster.local"
+  REDIS_POOL_SIZE: "50"
