@@ -1,0 +1,30 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: myapp-cert
+  namespace: myapp
+spec:
+  domains:
+    - api.myapp.com
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  namespace: myapp
+  annotations:
+    networking.gke.io/managed-certificates: "myapp-cert"
+    kubernetes.io/ingress.global-static-ip-name: "myapp-prod-ip"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+    - host: api.myapp.com
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: myapp
+                port:
+                  number: 80
